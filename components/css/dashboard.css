@@ -1,0 +1,588 @@
+  /* --- GLOBAL STYLES & VARIABLES --- */
+/* ===== Styling for the Office Dropdown Selector ===== */
+#officeSelect {
+  height: 40px;              /* Height of the select input */
+  width: 400px;              /* Width of the select input */
+  font-size: 16px;           /* Font size for better readability */
+  padding: 5px;              /* Padding inside the select box */
+}
+
+/* ===== General Body Styling ===== */
+body {
+  margin: 0;                 /* Remove default body margin */
+  font-family: Arial, sans-serif; /* Use a simple readable font */
+}
+
+/* Hamburger Menu */
+.hamburger-container {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1001;
+}
+
+.hamburger {
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  background: #2c3e50;
+  color: white;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.hamburger:hover {
+  background: #34495e;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  left: -300px;
+  top: 0;
+  width: 280px;
+  height: 100%;
+  background: #2c3e50;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  padding-top: 60px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  border-bottom: 1px solid #34495e;
+}
+
+.sidebar a {
+  display: block;
+  padding: 15px 20px;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.sidebar a:hover {
+  background: #34495e;
+}
+
+/* === Buttons: Apply Filter, Reset Filter, Reload === */
+#applyFilter,
+#resetFilter,
+button[onclick="window.location.reload();"] {
+  height: 50px;              /* Button height */
+  padding: 0 16px;           /* Horizontal padding inside buttons */
+  font-size: 14px;           /* Text size */
+  border-radius: 6px;        /* Rounded corners */
+  border: none;              /* Remove default border */
+  background-color: #005b9f; /* Blue background */
+  color: white;              /* White text */
+  cursor: pointer;           /* Show pointer on hover */
+  margin-left: 8px;          /* Space between buttons */
+  transition: background-color 0.2s ease; /* Smooth color change */
+}
+
+/* === Hover Effect for Buttons === */
+/* When hovering over any of the buttons, change background color */
+#applyFilter:hover,
+#resetFilter:hover,
+button[onclick="window.location.reload();"]:hover {
+  background-color: #004b88; /* Slightly darker blue */
+}
+
+
+/* ===== GLOBAL DESIGN VARIABLES (REUSABLE COLORS, FONTS, ETC) ===== */
+:root {
+  --primary-color: #005A9C;             /* Main blue color */
+  --secondary-color: #00A3E0;           /* Accent blue color */
+  --background-color: #f4f7f9;          /* Light gray background */
+  --card-background: #ffffff;           /* White background for cards */
+  --text-color: #333333;                /* Standard dark text color */
+  --label-color: #004070;               /* Label color for form inputs */
+  --border-color: #dbe2e8;              /* Light border color */
+  --success-color: #28a745;             /* Green (for success messages) */
+  --danger-color: #dc3545;              /* Red (for error messages) */
+  --font-family: 'Montserrat', sans-serif; /* Clean Google font */
+  --border-radius: 12px;                /* Rounded corners */
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Subtle shadow for cards */
+  --transition-speed: 0.3s;             /* Default transition speed */
+}
+
+/* ===== BODY GLOBAL STYLES ===== */
+body {
+  font-family: var(--font-family);          /* Apply global font */
+  background-color: var(--background-color);/* Set background color */
+  color: var(--text-color);                 /* Default text color */
+  margin: 0;
+  padding: 2rem;
+  min-height: 100vh;                        /* Ensure full screen height */
+}
+
+/* ===== HEADER STYLES ===== */
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary-color);              /* Blue header color */
+  font-size: 2.5rem;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+/* ===== LINE UNDER H1 ===== */
+h1::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 4px;
+  background: var(--secondary-color);       /* Accent color line */
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+/* ===== FILTER/CONTROL SECTION ===== */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;                               /* Gap between elements */
+  margin-bottom: 2.5rem;
+  align-items: center;
+  background: var(--card-background);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  transition: all var(--transition-speed) ease;
+}
+
+/* Hover effect for control panel */
+.controls:hover {
+  box-shadow: 0 8px 25px rgba(0, 90, 156, 0.1);
+}
+
+/* Style each label/input pair */
+.controls label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--label-color);
+  min-width: 180px;
+}
+
+/* Input and select fields inside control panel */
+.controls input[type="date"],
+.controls select {
+  padding: 0.8rem 1rem;
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: #fdfdfd;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  transition: all var(--transition-speed) ease;
+  margin-top: 0.5rem;
+}
+
+/* Focus effect for form inputs */
+.controls input[type="date"]:focus,
+.controls select:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  box-shadow: 0 0 0 3px rgba(0, 163, 224, 0.2);
+}
+
+/* Button styles in control panel */
+.controls button {
+  padding: 0.8rem 1.5rem;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 8px;
+  transition: all var(--transition-speed) ease;
+  min-width: 120px;
+}
+
+/* Style for Apply Filter button */
+#applyFilter {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Hover effect for Apply Filter button */
+#applyFilter:hover {
+  background-color: #004a84;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 90, 156, 0.2);
+}
+
+/* Style for Reset Filter and Reload buttons */
+#resetFilter,
+button[onClick="window.location.reload();"] {
+  background-color: white;
+  color: var(--primary-color);
+  border: 1px solid var(--border-color);
+}
+
+/* Hover effect for reset buttons */
+#resetFilter:hover,
+button[onClick="window.location.reload();"]:hover {
+  background-color: #f0f7ff;
+  border-color: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+/* ===== ANIMATION FOR AUTO-SCROLLING ELEMENTS ===== */
+@keyframes scrollUp {
+  0% {
+    transform: translateY(0); /* Start at top */
+  }
+  100% {
+    transform: translateY(calc(-100% + 250px)); /* Scroll to bottom */
+  }
+}
+
+  /* --- CHART CONTAINERS --- */
+  .chart-containerClient,
+    .chart-containerAge,
+      .chart-containerSex,
+  .chart-container,
+  .chart-containerCC1,
+    .chart-containerCC2,
+      .chart-containerCC3,
+  .chart-containerOffice,
+  .chart-container2,
+  .services-box,
+  .suggestions-box {
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    box-shadow: var(--card-shadow);
+    padding: 1.5rem;
+    transition: all var(--transition-speed) ease;
+    position: relative;
+  }
+
+/* === Hover Effects for All Chart Containers and Boxes === */
+/* These styles apply when the user hovers (mouse over) the elements listed below */
+
+.chart-container0:hover,        /* Optional chart container 0 */
+.chart-containerClient:hover,   /* Client type chart box */
+.chart-containerAge:hover,      /* Age group chart box */
+.chart-containerSex:hover,      /* Sex/gender chart box */
+.chart-container:hover,         /* Generic chart container */
+.chart-containerCC1:hover,      /* Citizen's Charter Awareness 1 */
+.chart-containerCC2:hover,      /* Citizen's Charter Awareness 2 */
+.chart-containerCC3:hover,      /* Citizen's Charter Awareness 3 */
+.chart-containerOffice:hover,   /* Office/services chart */
+.chart-container2:hover,        /* Another general chart (e.g., stacked) */
+.services-box:hover,            /* Services list box */
+.suggestions-box:hover {        /* Suggestions/comments list box */
+
+  /* When hovered, apply a soft shadow to lift the element visually */
+  box-shadow: 0 8px 25px rgba(0, 90, 156, 0.1);
+
+  /* Slightly raise the element to create a 3D floating effect */
+  transform: translateY(-3px);
+}
+/*Client Type: Container:*/
+  .chart-containerClient {
+    position: relative;
+    bottom: 5px;
+    left: 35px;
+    height: 400px;
+    width: 400px;
+    margin-bottom: 1.5rem;
+  }
+
+  /*Sex:Container*/
+    .chart-containerSex {
+    position: relative;
+    bottom: 478px;
+    left: 502px;
+    height: 400px;
+    width: 400px;
+    margin-bottom: 1.5rem;
+  } 
+  
+  
+  /*Age: Container*/
+  .chart-containerAge {
+    position: relative;
+    bottom: 950px;
+    left: 970px;
+    height: 400px;
+    width: 400px;
+    margin-bottom: 1.5rem;
+  }
+ 
+/*Office: Container*/
+  .chart-containerOffice {
+    width: 1335px;
+    position: relative;
+    left: 35px;
+    height: 350px;
+    bottom: 2810px;
+    margin-bottom: 1.5rem;
+  }
+
+  /*SQD CONTAINER*/
+  .chart-container {
+    position: relative;
+    width: 1350px;
+    top: -1015px;
+    right: -40px;
+    height: 350px;
+    margin-bottom: 1.5rem;
+  }
+/*CC1 Container*/
+  .chart-containerCC1 {
+    position: relative;
+    top: -70px;
+    right: -38px;
+     height: 400px;
+    width: 400px;
+    margin-bottom: 1.5rem;
+  }
+  
+  /*CC2 Container*/
+    .chart-containerCC2 {
+    position: relative;
+    top: -540px;
+    right: -512px;
+     height: 400px;
+    width: 400px;
+    margin-bottom: 1.5rem;
+  }
+
+  /*CC3 Container*/
+    .chart-containerCC3 {
+    position: relative;
+    top: -1012px;
+    right: -988px;
+     height: 400px;
+    width: 400px;
+    margin-bottom: 1.5rem;
+  }
+
+
+/*Barangay:Container*/
+  .chart-container2 {
+    width: 1335px;
+    position: relative;
+    left: 35px;
+    height: 350px;
+    bottom: 970px;
+    margin-bottom: 1.5rem;
+  }
+
+/* --- SERVICES BOX --- */
+.services-box {
+  width: 1335px; /* Sets the width of the box to 1335 pixels */
+  height: 400px; /* Sets the height of the box to 400 pixels */
+  background: var(--card-background); /* Uses a custom CSS variable for the background color */
+  padding: 2rem; /* Adds padding (space inside the box) of 2rem units on all sides */
+  border-radius: var(--border-radius); /* Rounds the corners of the box using a CSS variable */
+  box-shadow: var(--card-shadow); /* Applies a shadow around the box using a CSS variable */
+  position: absolute; /* Positions the box absolutely in relation to its nearest positioned ancestor */
+  top: 1620px; /* Moves the box 1620px down from the top of the containing element/page */
+  left: 4.5%; /* Moves the box 4.5% from the left side of the containing element/page */
+}
+
+/* Styles for the <h2> heading inside the services box */
+.services-box h2 {
+  margin-top: 0; /* Removes the top margin from the heading */
+  text-align: center; /* Centers the text horizontally */
+  color: var(--primary-color); /* Sets the text color using a CSS variable */
+  font-size: 1.5rem; /* Sets the font size to 1.5 rem units */
+  margin-bottom: 1.5rem; /* Adds space below the heading */
+  position: relative; /* Allows for further positioning (e.g., absolute children) if needed */
+}
+
+
+.services-box h2::after {
+  content: ''; /* Creates a pseudo-element after the <h2> element with no text */
+  display: block; /* Makes the pseudo-element behave like a block (takes full width) */
+  width: 60px; /* Sets the width of the line to 60 pixels */
+  height: 3px; /* Sets the height (thickness) of the line to 3 pixels */
+  background: var(--secondary-color); /* Sets the background color using a CSS variable */
+  margin: 0.5rem auto 0; /* Adds margin: 0.5rem on top, auto on sides (to center), and 0 on bottom */
+  border-radius: 2px; /* Slightly rounds the corners of the line */
+}
+
+
+  /* --- SUGGESTIONS BOX --- */
+  .suggestions-box {
+  max-height: 500px;
+  width: 1350px;
+  background: var(--card-background);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--card-shadow);
+  margin: 2rem auto;          /* Removed positioning, adds spacing */
+  overflow-y: auto;           /* Enables manual scroll */
+  position: relative;         /* Resets from absolute */
+  bottom: 1450px;
+  left: 10px;
+}
+
+.suggestions-box h2 {
+  margin-top: 0; /* Removes any space above the heading */
+  text-align: center; /* Centers the heading text horizontally */
+  color: var(--primary-color); /* Sets the heading text color using a CSS variable */
+  font-size: 1.5rem; /* Sets the font size to 1.5 rem (relative to the root font size) */
+  margin-bottom: 1.5rem; /* Adds space below the heading */
+  position: relative; /* Allows you to position child elements (like pseudo-elements) relative to this heading */
+}
+
+.suggestions-box h2::after {
+  content: ''; /* Creates an empty pseudo-element after the <h2> element */
+  display: block; /* Makes the pseudo-element a block so it can have width and height */
+  width: 60px; /* Sets the width of the decorative line */
+  height: 3px; /* Sets the thickness of the line */
+  background: var(--secondary-color); /* Sets the line color using a CSS variable */
+  margin: 0.5rem auto 0; /* Adds top margin (0.5rem), centers it horizontally with auto, no bottom margin */
+  border-radius: 2px; /* Rounds the corners of the line slightly */
+}
+
+/* --- SCROLL CONTAINERS --- */
+.scroll-container {
+  height: 320px; /* Sets the height of the scroll container */
+  overflow: hidden; /* Hides anything that overflows outside this container (no scrollbars shown initially) */
+  position: relative; /* Sets the positioning context for absolutely-positioned child elements */
+}
+
+.scroll-container:hover {
+  animation-play-state: paused; /* Pauses the scrolling animation when the user hovers over the container */
+  overflow-y: auto; /* Enables vertical scrolling when hovered */
+  cursor: grab; /* Changes the mouse cursor to a "grab" hand icon for better UX */
+}
+
+#serviceList {
+  position: relative; /* Positions it relative to its normal flow (useful for inner elements or animations) */
+}
+
+#serviceList.scroll-animate {
+  animation: scrollUp 100s linear infinite; 
+  /* Applies the 'scrollUp' animation that runs:
+     - for 100 seconds per loop,
+     - at a constant speed (linear),
+     - and loops infinitely */
+}
+
+
+/* --- LISTS --- */
+.services-box ul,
+.suggestions-box ul {
+  list-style: none;       /* Removes default bullet points from unordered lists */
+  padding-left: 0;        /* Removes default left padding on the list */
+  margin: 0;              /* Removes default margin around the list */
+}
+
+.services-box li,
+.suggestions-box li {
+  padding: 0.8rem 1rem;   /* Adds space inside each list item: 0.8rem top/bottom, 1rem left/right */
+  margin-bottom: 0.5rem;  /* Adds space below each list item */
+  background: rgba(0, 163, 224, 0.05); /* Light blue background with 5% opacity */
+  border-radius: 6px;     /* Rounds the corners of each list item slightly */
+  transition: all 0.2s ease; /* Smoothly animates any changes (like on hover) over 0.2 seconds */
+}
+
+.services-box li:hover,
+.suggestions-box li:hover {
+  background: rgba(0, 163, 224, 0.1); /* Darker blue background (10% opacity) when hovered */
+  transform: translateX(3px);         /* Slightly shifts the item 3px to the right on hover */
+}
+
+.services-box li strong,
+.suggestions-box li strong {
+  color: var(--primary-color);    /* Sets the text color of <strong> tags using a CSS variable */
+  display: block;                 /* Makes the <strong> behave like a block element (starts on a new line) */
+  margin-bottom: 0.3rem;          /* Adds space below the bold text */
+}
+
+/* --- SCROLLBARS --- */
+
+/* This targets the scrollbar itself (works in WebKit browsers like Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px;   /* Sets the width of the vertical scrollbar */
+  height: 8px;  /* Sets the height of the horizontal scrollbar */
+}
+
+/* This styles the track — the empty area behind the scrollbar thumb */
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05); /* Light gray background with 5% opacity */
+  border-radius: 4px;              /* Rounds the corners of the track slightly */
+}
+
+/* This styles the "thumb" — the draggable part of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 90, 156, 0.3); /* Medium blue with 30% opacity */
+  border-radius: 4px;               /* Rounds the corners of the thumb */
+}
+
+/* This changes the thumb's color when you hover over it */
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 90, 156, 0.5); /* Darker blue with 50% opacity on hover */
+}
+
+
+  /* --- CHART ANIMATIONS --- */
+  canvas {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+/* --- RESPONSIVE DESIGN --- */
+
+/* Applies styles when the screen width is 1200px or smaller */
+@media (max-width: 1200px) {
+  .controls {
+    gap: 1rem; /* Reduces the space between elements inside .controls */
+  }
+  
+  .controls label {
+    min-width: 150px; /* Sets a smaller minimum width for labels */
+  }
+}
+
+/* Applies styles when the screen width is 768px or smaller (e.g., tablets, mobile) */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem; /* Adds more padding around the body to prevent content from touching the edges */
+  }
+  
+  h1 {
+    font-size: 2rem; /* Reduces the main heading size for smaller screens */
+  }
+  
+  .controls {
+    flex-direction: column;  /* Stacks the controls vertically instead of in a row */
+    align-items: stretch;    /* Makes controls stretch to full width */
+    gap: 0.8rem;             /* Reduces spacing between the controls */
+  }
+  
+  .controls label {
+    min-width: auto; /* Removes any fixed minimum width to allow more flexibility */
+  }
+  
+  .controls button {
+    width: 100%; /* Makes buttons stretch to the full width of the container */
+  }
+}

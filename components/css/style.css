@@ -1,0 +1,147 @@
+/* --- GLOBAL STYLES & VARIABLES --- */
+:root {
+  --primary-color: #005A9C;
+  --secondary-color: #00A3E0;
+  --background-color: #f4f7f9;
+  --card-background: #ffffff;
+  --text-color: #333333;
+  --label-color: #004070;
+  --border-color: #dbe2e8;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --font-family: 'Montserrat', sans-serif;
+  --border-radius: 12px;
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --transition-speed: 0.3s;
+}
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+/* Hamburger Menu */
+
+/* Hide hamburger when `.hidden` is applied */
+.hamburger.hidden {
+  display: none !important;
+  opacity: 0;
+  transition: opacity var(--transition-speed) ease;
+}
+
+.hamburger-container {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1001;
+}
+
+.hamburger {
+  font-size: 24px;
+  cursor: pointer;
+  padding: 10px;
+  background: #2c3e50;
+  color: white;
+  border-radius: 4px;
+  transition: background 0.3s;
+}
+
+.hamburger:hover {
+  background: #34495e;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  left: -300px;
+  top: 0;
+  width: 280px;
+  height: 100%;
+  background: #2c3e50;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  padding-top: 60px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.3);
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  border-bottom: 1px solid #34495e;
+}
+
+.sidebar a {
+  display: block;
+  padding: 15px 20px;
+  color: white;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.sidebar a:hover {
+  background: #34495e;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 999;
+  display: none;
+}
+
+.overlay.active {
+  display: block;
+}
+
+/* Header */
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #e00000;
+  font-size: 2.5rem;
+  font-weight: 700;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+h1::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 4px;
+  background: var(--secondary-color);
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    padding: 1rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+}

@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') { // Check if form is submitted via P
   <!-- logo centered inside the container -->
   <img src="../assets/images/ellidan_logo.png" alt="ellidan Logo" class="logo" />
     <!-- Page heading -->
-    <h1>i-GOV Feedback Dashboard</h1>
+    <h1>Admin Feedback Dashboard</h1>
     <h2>Welcome!</h2>
 
     <!-- PHP: Display error message if login fails -->

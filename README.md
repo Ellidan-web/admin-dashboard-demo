@@ -4,7 +4,7 @@ A comprehensive web-based dashboard system for monitoring and analyzing citizen 
 ---
 
 ## 📋 Project Overview
-The **i-GOV Admin Dashboard** is a PHP-based web application that provides real-time visualization and reporting of citizen feedback data collected through Google Forms or a JSON file. The system helps government administrators track service performance, monitor citizen satisfaction, and generate actionable insights.
+A PHP-based demonstration of a citizen feedback analytics platform. This demo showcases a working admin dashboard with sample data visualization, reporting features, and an interactive UI for tracking service metrics. The production version handles sensitive government data; this preview includes anonymized sample datasets for portfolio purposes.
 
 ---
 

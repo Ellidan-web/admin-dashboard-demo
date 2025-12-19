@@ -20,7 +20,7 @@ Security: Session-based auth, role-based access, password hashing, input validat
 
 ## Project Structure
 ```
-IGOV-CC-DASHBOARD/
+ADMIN-DASHBOARD/
 ├── assets/images/ └── logos
 ├── css/ └── dashboard.css, login.css, style.css...
 ├── js/ └── dashboard.js, sampledata.json...
@@ -42,7 +42,7 @@ IGOV-CC-DASHBOARD/
 1. Clone repo: `git clone [repository-url]`  
 2. Create database:
 ```
-CREATE DATABASE igov_system;
+CREATE DATABASE admin_system;
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(100) UNIQUE NOT NULL,
@@ -82,9 +82,6 @@ Role-based access control
 
 ##  Contributing
 Fork → Feature branch → Commit → Push → Pull Request
-
-##  License
-Developed for Naga City LGU
 
 ##  Support
 Contact project maintainer for assistance

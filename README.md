@@ -15,7 +15,7 @@ Dashboard Components: Client demographics, service metrics, Citizen’s Charter 
 
 ## Tech Stack
 Frontend: HTML5, CSS3, JavaScript, Chart.js  
-Backend: PHP 7.4+, MySQL, JSON demo data  
+Backend: PHP 7.4+, MySQL, JSON demo data, appscript API (In private demo)
 Security: Session-based auth, role-based access, password hashing, input validation
 
 ## Project Structure
